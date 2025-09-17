@@ -1,0 +1,571 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    font-family: 'poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: rgb(7, 1, 22);
+    
+}
+.container{
+    display: flex;
+    justify-content: space-between;      /*logo on left nav on right*/ 
+    align-items: center;
+    padding-left: 90px;              /*padding for the space from ends*/
+    padding-right: 90px;        
+    padding-top: 10px;
+    position: fixed;
+    gap: 680px;
+    background-color: rgb(22, 3, 44);
+    z-index: 1000;
+}
+nav ul{
+    display: flex;          /*Flex for making the list horizontal*/
+    margin: 0;
+    padding: 0;
+    gap: 35px;              /*gap between the list*/
+    list-style: none;
+    animation: slideTop .5s ease forwards;
+    opacity: 0;
+}
+nav ul li a{
+    position: relative;            /*reference for the absolute*/
+    color: white;
+    text-decoration: none;        /*removes the underline*/
+    font-size: 18px;
+    transition: 0.3s ease;
+    
+}
+nav a:hover{
+    color: blueviolet;
+}
+nav ul li a::after{
+    content: "";                    /*psedo element known as fake element*/
+    position: absolute;               /*takes reference from the reletive position that mean from starting*/
+    left: 0px;                        
+    bottom: -3px;                         /*just below the text*/
+    height: 2px;                          /*thickness of the line*/
+    background-color: blueviolet;
+    transition: width 0.3 ease;
+}
+nav ul li a:hover::after{
+    width: 100%;                           /*sliding starts from 0 width and goes upto the end of the letter*/
+}
+.logo{
+    color: white;
+    font-size: 32px;
+    animation: slideRight 1s ease;
+    
+}
+
+.home-container{
+    display: flex;
+    align-items: center;
+    padding-top: 170px;
+    padding-left: 150px;
+    color: white;
+    ;
+    
+    
+    
+}
+.home-content h3{
+    font-size: 32px;
+    font-weight: 700;
+    animation: slideBottom 1s ease forwards;
+    opacity: 0;
+}
+.home-content h1{
+    font-size: 52px;
+    font-weight: 700;
+    animation: slideRight 1s ease forwards;
+    animation-delay: .1s;
+    opacity: 0;
+}
+.text{
+    color: blueviolet;
+}
+.home-photo img{
+    width: 300px;
+    height: 300px;
+    border-radius: 20%;
+    object-fit:cover ;
+    margin-left: 90px;
+    margin-bottom: 120px;
+    animation: slideIn 1s ease-in forwards; 
+    opacity: 0;     
+}
+@keyframes slideIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+.home-content p{
+  animation: slideLeft 1s ease forwards;
+  opacity: 0;
+}
+@keyframes slideRight {
+    0%{
+        transform: translateX(-100px);
+        opacity: o;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideTop {
+    0%{
+        transform: translateY(-100px);
+        opacity: o;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideBottom {
+    0%{
+        transform: translateY(-100px);
+        opacity: o;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideRight {
+    0%{
+        transform: translateX(-100px);
+        opacity: o;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft {
+    0%{
+        transform: translateX(100px);
+        opacity: o;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+.social-links{
+    margin-top: 20px;
+    
+}
+.social-links a {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+  border-radius: 10%;
+  background: #222;             /* button background */
+  color: white;                 /* icon color */
+  font-size: 24px;
+  text-align: center;             /* it places the icon at the center at top*/
+  line-height: 50px;              /* it places the icon at the middle of button*/
+  transition: all 0.3s ease;
+  animation: slideLeft 1s ease forwards;
+  animation-delay: calc(0.2s * var(--i));
+  opacity: 0;
+}
+@keyframes slideLeft {
+    0%{
+        transform: translateX(100px);
+        opacity: o;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+.social-links a:hover {
+  background: blueviolet;          /* change background on hover */
+  color: white;                 /* icon color stays white */
+  transform: scale(1.1);        /* small zoom effect */
+}
+/* ===== Container that holds all skill rows ===== */
+.skills-container {
+  max-width: 1100px;         /* Prevents it from stretching too wide */
+  margin: auto;              /* Centers container horizontally */
+  position: relative;        /* For fade effect positioning */
+  overflow: hidden;          /* Hides overflow of moving boxes */
+  padding: 150px 0;           /* Top & bottom spacing */
+  display: flex;             /* Stack rows vertically */
+  flex-direction: column;    /* Column layout (one row below another) */
+  gap: 50px;                 /* Space between two rows */
+}
+
+/* ===== Each row wrapper ===== */
+.skills-row {
+  position: relative;
+  width: 100%;
+  overflow: hidden;          /* Keeps train inside the tunnel */
+}
+
+/* ===== Track of skill boxes (that moves) ===== */
+.skills-track {
+  display: flex;             /* Place boxes in a row */
+  gap: 30px;                 /* Space between boxes */
+  animation: scroll-left 20s linear infinite; /* Default animation (left) */
+  
+}
+.skills-track.reverse {
+  animation: scroll-right 20s linear infinite; /* Reverse direction */
+  
+}
+
+/* ===== Pause scrolling when hovering over a row ===== */
+.skills-row:hover .skills-track {
+  animation-play-state: paused;
+
+}
+
+/* ===== Skill box design ===== */
+.skill {
+  flex: 0 0 200px;           /* Fixed width of box (200px) */
+  min-height: 100px;             /* Fixed height of box (120px) */
+  background: linear-gradient(135deg, #23233b, #1a1a2e); /* Gradient style */
+  border-radius: 15px;       /* Rounded corners */
+  display: flex;             /* Center content inside */
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;           /* Text size */
+  font-weight: 80%;
+  color:white;            /* Text color */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5); /* Shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.skill:hover {
+  transform: scale(1.15); /* Zoom in on hover */
+  box-shadow: 1px 1px 30px blueviolet; /* Stronger shadow for pop effect */
+  
+}
+
+/* ===== Tunnel fade effect (shadow edges) ===== */
+.fade {
+  position: absolute;
+  top: 0;
+  width: 120px;              /* Width of fading shadow */
+  height: 80%;
+  pointer-events: none;      /* Doesn't block hover */
+  z-index: 2;                /* Keeps it above skill boxes */
+}
+.fade.left {
+  left: 0;
+  background: linear-gradient(to right, #0b0b16, transparent); /* Fade from left */
+}
+.fade.right {
+  right: 0;
+  background: linear-gradient(to left, #0b0b16, transparent); /* Fade from right */
+}
+
+/* ===== Animations for scrolling ===== */
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }       /* Start at normal position */
+  100% { transform: translateX(-100%); }    /* Move half track left */
+}
+@keyframes scroll-right {
+  0%   { transform: translateX(-100%); }    /* Start offset left */
+  100% { transform: translateX(0); }       /* Move track back to normal */
+}
+.skill i {
+  font-size: 28px;      /* size of icon */
+  margin-right: 10px;   /* space between icon and text */
+  color: blueviolet;       /* change icon color */
+}
+html {
+  scroll-behavior: smooth;
+}
+.resume a {
+  background-color: blueviolet;
+  width: 40%;
+  padding: 0 120px;
+  color: rgb(232, 215, 215);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 14px;
+  opacity: 0;
+  animation: slideRight 3s ease forwards;
+
+}
+@keyframes slideRight {
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+.resume a:hover {
+  background-color: rgb(47, 15, 63);
+  
+}
+
+.projects-container{
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-left: 120px;
+  
+  
+}
+.project-card{
+  flex: 0 1 300px;
+  width: 25%;
+  margin: 20px 30px;
+  color: white;
+  border-radius: 5%;
+  box-shadow: 1px 1px 20px blueviolet;
+  padding: 25px 25px;
+  animation: slideTop 1s ease forwards;
+  opacity: 0;
+}
+@keyframes slideTop {
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.project-card h3{
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.view a{
+  width: 50%;
+  height: 30px;
+  margin: 15px;
+  border-radius:6%;
+  align-items: center;
+  background-color:#1a1a2e;
+  display: flex;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  transition:background 0.3s ease;
+  
+}
+.view a:hover {
+  background-color: blueviolet;
+  transform: scale(1.1);
+}
+.about-container{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 100px;
+  height: auto;
+  overflow:auto;
+}
+.about-img img{
+  width: 300px;
+  object-fit: cover;
+  margin-top: 250px;
+  margin-left: 150px;
+  border-radius: 10px;
+  opacity: 0;
+  animation: slideIn 1s ease-in forwards;
+  
+   
+}
+@keyframes slideIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+} 
+    
+.about-content{
+  color: white;
+  margin-top: 200px;
+  font-size: 25px;
+  max-height: 600px;
+  overflow-y: auto;
+  
+  
+}
+
+.about-content p{
+  margin: 20px 0;
+  margin-right: 50px;
+  font-size: 15px;
+  line-height: 25px;
+  animation: slideTop 1s ease forwards;
+}
+@keyframes slideTop {
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+
+.contact-container{
+  height: 100px;
+  
+
+}
+.contact-form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 700px;
+  padding: 0px 50px;
+  width: 40%;
+  max-height: 100vh;
+  margin-top: 120px;
+  
+  
+  
+  
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+  background-color:  #111;
+  color:white;
+}
+.contact-info{
+  padding-left: 50px;
+  padding-top: 150px;
+  padding-bottom: 50px;
+  animation: slideBottom 1s ease forwards;
+  opacity: 0;
+}
+@keyframes slideBottom {
+    0%{
+        transform: translateY(-100px);
+        opacity: o;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+.contact-social{
+  margin-top: 15px;
+  
+}
+.contact-form button {
+  background: #2ecc71;   
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: slideTop 1s ease forwards;
+  opacity: 0;
+}
+@keyframes slideTop {
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+
+.contact-form button:hover {
+  background: #27ae60;
+}
+
+.footer {
+  background: #0d1117; 
+  color: #fff;
+  padding: 30px 50px;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-logo {
+  background: blueviolet; 
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 20%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-left h3 {
+  margin: 0;
+}
+
+.footer-left p {
+  margin: 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.footer-right a {
+  color: white;
+  font-size: 20px;
+  margin-left: 15px;
+  transition: color 0.3s;
+}
+
+.footer-right a:hover {
+  color: blueviolet;
+}
+
+.footer hr {
+  border: 0.5px solid #333;
+  margin: 20px 0;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.contact-form {
+  position: relative;
+  z-index: 10; /* make sure it's above overlays */
+}
